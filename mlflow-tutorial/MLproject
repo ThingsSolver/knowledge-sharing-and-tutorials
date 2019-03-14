@@ -1,0 +1,10 @@
+name: tutorial
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      k_low: {type: int, default: 2}
+      k_high: {type: int, default: 10}
+    command: "python train.py {k_low} {k_high}"
