@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/dash_plotly_tutorial.iml" filepath="$PROJECT_DIR$/.idea/dash_plotly_tutorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../docker crash course/.idea/docker crash course.iml" filepath="$PROJECT_DIR$/../docker crash course/.idea/docker crash course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../etc/.idea/etc.iml" filepath="$PROJECT_DIR$/../etc/.idea/etc.iml" />
+    </modules>
+  </component>
+</project>
