@@ -1,0 +1,55 @@
+body{
+    background-color: #f0f0f0;
+}
+button.previous-page {
+    margin-top: 16px;
+}
+h1{
+    margin: 0;
+    text-align: center;
+}
+h2 {
+    margin-top: 0px;
+}
+th, td {
+    border: none;
+    box-shadow: none!important;
+}
+.mat-card{
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: inline-block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+    background: #fff;
+    color: rgba(0,0,0,.87);
+}
+.sort {
+    margin-top: -4px;
+    display: inline-block;
+    text-decoration: none!important;
+    float: right!important;
+    margin-left: 5px;
+}
+.dash-spreadsheet-container th:hover .sort, .sort:hover{
+    color: rgb(31, 119, 180)!important;
+}
+.dash-fixed-content {
+    outline: 1px lightgrey solid;
+}
+
+
+
+
+#product-dropdown {
+    width: 250px;
+    margin-bottom: 20px;
+}
+#clv-checklist, #seg-checklist-apply, #rec-checklist{
+    margin-top: 20px;
+}
+#clv-value, #predicted-rating-value{
+    margin-top:20px;
+    font-weight: 600;
+}
