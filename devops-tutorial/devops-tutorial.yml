@@ -20,9 +20,7 @@ spec:
       containers:
       - name: "devops-tutorial"
         image: "thingsolver/devops-tutorial:1.0"
-        imagePullPolicy: Always
-      imagePullSecrets:
-      - name: regcred
+        imagePullPolicy: IfNotPresent
 
 ---
 apiVersion: "autoscaling/v2beta1"
