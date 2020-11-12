@@ -89,7 +89,7 @@ spec:
   gateways:
   - default/solver-gateway
   http:
-    route:
+  - route:
     - destination:
         port:
           number: 80
