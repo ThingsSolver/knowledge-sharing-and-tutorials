@@ -1,0 +1,97 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "devops-tutorial"
+  namespace: "default"
+  labels:
+    app: "devops-tutorial"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "devops-tutorial"
+  template:
+    metadata:
+      labels:
+        app: "devops-tutorial"
+        version: v1
+    spec:
+      containers:
+      - name: "devops-tutorial"
+        image: "thingsolver/devops-tutorial:1.0"
+        imagePullPolicy: IfNotPresent
+
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "devops-tutorial-hpa-fg8d"
+  namespace: "default"
+  labels:
+    app: "devops-tutorial"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "devops-tutorial"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
+
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "devops-tutorial"
+  namespace: "default"
+  labels:
+    app: "devops-tutorial"
+    version: v1
+spec:
+  ports:
+  - name: http-devops-tutorial
+    port: 80
+    targetPort: 80
+  selector:
+    app: "devops-tutorial"
+  type: "ClusterIP"
+
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: devops-tutorial
+spec:
+  host: devops-tutorial
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: devops-tutorial
+spec:
+  hosts:
+  - "devops-tutorial.thingsolver.com"
+  gateways:
+  - default/solver-gateway
+  http:
+    route:
+    - destination:
+        port:
+          number: 80
+        host: devops-tutorial
+        subset: v1
