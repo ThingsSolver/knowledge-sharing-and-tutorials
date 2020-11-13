@@ -1,0 +1,22 @@
+name: Run and build devops tutorial image
+on:
+  pull_request:
+    paths: 'devops-tutorial/**'
+    branches:
+      - master
+jobs:
+  build-and-push-docker-image:
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build and push docker image
+      uses: actions/checkout@master
+    - run: |
+        export TAG=$(cat devops-tutorial/VERSION)
+        echo $TAG
+        cd devops-tutorial
+        docker build -t thingsolver/devops-tutorial:$TAG .
+        docker run -it --name devops-tutorial -d thingsolver/devops-tutorial:$TAG
+        docker exec -it devops-tutorial curl -sL -w "%{http_code}" -I localhost | grep 200 | echo "SUCCESS\! TEST PASSED\!"
+        docker stop devops-tutorial && docker rm devops-tutorial
+        docker push thingsolver/devops-tutorial:$TAG
