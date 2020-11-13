@@ -15,6 +15,7 @@ jobs:
         export TAG=$(cat devops-tutorial/VERSION)
         echo $TAG
         cd devops-tutorial
+        docker login --username ${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
         docker build -t thingsolver/devops-tutorial:$TAG .
         docker run -it --name devops-tutorial -d thingsolver/devops-tutorial:$TAG
         docker exec -it devops-tutorial curl -sL -w "%{http_code}" -I localhost | grep 200 | echo "SUCCESS! TEST PASSED!"
