@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: "devops-tutorial"
-        image: "thingsolver/devops-tutorial:1.4"
+        image: "thingsolver/devops-tutorial:1.5"
         imagePullPolicy: IfNotPresent
 
 ---
