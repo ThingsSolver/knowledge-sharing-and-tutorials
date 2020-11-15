@@ -9,7 +9,7 @@ jobs:
     name: Build and push docker image
     runs-on: ubuntu-latest
     steps:
-    - name: Build and push docker image
+    - name: Build, test and push docker image
       uses: actions/checkout@master
     - run: |
         export TAG=$(cat devops-tutorial/VERSION)
